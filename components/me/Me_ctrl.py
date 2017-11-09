@@ -1,6 +1,6 @@
 from libs.Screen import *
 from components.company.Company import Company
-from Model import Model
+from app.Model import Model
 from components.me.Me_tpl import Me_tpl
 from pprint import pprint
 

@@ -2,7 +2,7 @@ from libs.Screen import *
 from components.supplier.Supplier import Supplier
 from components.supplier.Supplier_tpl import Supplier_tpl
 
-from Model import Model
+from app.Model import Model
 
 
 class Supplier_ctrl(object):

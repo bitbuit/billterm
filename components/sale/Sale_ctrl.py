@@ -7,7 +7,7 @@ from components.sale.Sale import *
 from components.sale.Sale_tpl import Sale_tpl
 
 from libs.Screen import *
-from Model import Model
+from app.Model import Model
 
 class Sale_ctrl(object):
 
