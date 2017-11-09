@@ -1,6 +1,7 @@
 import shlex
 from pprint import pprint
 
+from components.app.App_routr import App_routr
 from components.customer.Customer_routr import Customer_routr
 from components.supplier.Supplier_routr import Supplier_routr
 from components.me.Me_routr import Me_routr
@@ -25,25 +26,11 @@ class App(object):
 #            except:
 #                print("Unknow command! Type: help")
 
-    @staticmethod
-    def help(params):
-        #pprint(Commands.get_routes())
-        pass
-
-    @staticmethod
-    def exit(params):
-        quit()
-
-
 
 class Commands(object):
-    _ROUTES = [  
-
-                [ ['help'], App.help],
-                [ ['exit'], App.exit ],
-     ]
 
     _routes_map = [ 
+                    App_routr,
                     Customer_routr, 
                     Supplier_routr,
                     Sale_routr,
