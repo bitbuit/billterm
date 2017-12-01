@@ -15,8 +15,7 @@ class App(object):
 
     @staticmethod
     def start():
-        print("Hello!")
-        print("Write 'help' if you are lost :)")
+        Commands.do(["hello!"])
         while True:
             exp = input(": ")
             exp = shlex.split(exp)
