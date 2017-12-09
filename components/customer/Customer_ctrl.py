@@ -1,6 +1,6 @@
 from app.Model import Model
 from libs.Screen import *
-from components.customer.Customer import Customers
+from components.customer.Customer import *
 from components.customer.Customer_tpl import Customer_tpl
 
 class Customer_ctrl(object):
