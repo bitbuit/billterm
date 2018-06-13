@@ -1,5 +1,6 @@
 # billterm ignored files
 db/
+documents/*
 
 # gitignore template file from https://github.com/github/gitignore :)
 # Byte-compiled / optimized / DLL files
