@@ -7,6 +7,7 @@ from components.sale.Sale import *
 from components.sale.Sale_tpl import Sale_tpl
 
 from libs.Screen import *
+from libs.Pdf import *
 from app.Model import Model
 
 class Sale_ctrl(object):
@@ -28,7 +29,7 @@ class Sale_ctrl(object):
                     print('p2')
                     ed = params[i+2].split("-")
                     ed = date(int(ed[0]),int(ed[1]),int(ed[2]))
-                    
+
             elif token == 'asc' or token == 'desc':
                 sort = token
 
@@ -45,7 +46,7 @@ class Sale_ctrl(object):
         invoice = sales.get(params[0])
 
         Sale_tpl.view(invoice)
-          
+
 
     @staticmethod
     def new(params):
@@ -64,8 +65,8 @@ class Sale_ctrl(object):
         t = input("Invoice date ("+ inv.date + "): ")
         inv.date = inv.date if t == '' else t
         inv.summary = input("Summary: ")
-        Model.sales.add(inv)        
-        
+        Model.sales.add(inv)
+
     @staticmethod
     def add_item(params):
         if len(params) == 0:
@@ -76,7 +77,7 @@ class Sale_ctrl(object):
         if not Model.sales.exists(invoice_id):
             print("Sale invoice not exists!")
             return
-        
+
         desc = input("Descripion: ")
         price = float(input("Unit price: "))
         qty = float(input("Quantity: "))
@@ -90,7 +91,7 @@ class Sale_ctrl(object):
         inv = Model.sales.get(invoice_id)
         inv.add_item(desc, price, qty, vats)
         Model.sales.add(inv)
-            
+
 
     @staticmethod
     def export(params):
@@ -123,3 +124,29 @@ class Sale_ctrl(object):
                 writer.writerow(row)
 
             print('Finished!')
+
+    @staticmethod
+    def pdf(params):
+        id = params[0]
+        sales = Model.sales
+        if not sales.exists(id):
+            print("Not found")
+            return
+        invoice = sales.get(id)
+        out = Pdf('sale-invoice', id)
+
+        me = Model.me
+
+        print_data = invoice.exports()
+        vats = invoice.resume_vats()
+        print_data['vats'] = []
+        for vat_id in vats:
+
+            print_data['vats'].append( {
+                'name' : me.get_vat(vat_id)['label'],
+                'amount': vats[vat_id]
+            })
+
+        print_data['me'] = me.get_company().exports()
+
+        out.create(print_data)

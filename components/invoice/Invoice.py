@@ -29,7 +29,6 @@ class Invoice(object):
         vats = {}
         for i in range(len(self.items)):
             line = self.items[i]
-            pprint(line['vats'])
             for v in line['vats']:
                 key = v
                 value = line['vats'][v]
@@ -39,9 +38,6 @@ class Invoice(object):
     def __total(self):
         total = self.subtotal
         vats = self.vats
-
-        pprint(vats)
-
         for code in self.vats:
             total = total + vats[code]
         return total
@@ -68,8 +64,8 @@ class Invoice(object):
             e = vats[vat]
             v[e['id']] = total * (float(e['value'])/100)
 
-        self.items.append( { 
-            'description': description, 
+        self.items.append( {
+            'description': description,
             'price': price,
             'qty': qty,
             'total': total,
@@ -100,7 +96,7 @@ class Invoice(object):
         return self.__dict__
 
     def imports(self, data):
-        self.__dict__ = data 
+        self.__dict__ = data
 
 
 class Invoices(object):
@@ -137,8 +133,8 @@ class Invoices(object):
 #        res = []
 #        for id in self.invoices.list():
 #            t = self.invoices.get(id)
-#            res.append( { 
-#                'id': t['id'], 
+#            res.append( {
+#                'id': t['id'],
 #                'company_id' : t['company_id'],
 #                'summary' : t['summary'],
 #                'paid': t['paid'],
@@ -146,6 +142,3 @@ class Invoices(object):
 #                'total': t['total'] } )
 #
 #        return res
-
-
-
