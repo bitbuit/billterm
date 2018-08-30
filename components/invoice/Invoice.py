@@ -23,7 +23,7 @@ class Invoice(object):
         for i in range(len(self.items)):
             line = self.items[i]
             subtotal = subtotal + line['total']
-        return subtotal
+        return round(subtotal, 2)
 
     def __total_vats(self):
         vats = {}
@@ -40,7 +40,7 @@ class Invoice(object):
         vats = self.vats
         for code in self.vats:
             total = total + vats[code]
-        return total
+        return round(total, 2)
 
     def _recalculate(self):
         self.subtotal = self.__subtotal()
@@ -62,13 +62,13 @@ class Invoice(object):
         v = {}
         for vat in vats:
             e = vats[vat]
-            v[e['id']] = total * (float(e['value'])/100)
+            v[e['id']] = round(total * (float(e['value'])/100), 2)
 
         self.items.append( {
             'description': description,
-            'price': price,
+            'price': round(price, 2),
             'qty': qty,
-            'total': total,
+            'total': round(total, 2),
             'vats': v
              } )
 
