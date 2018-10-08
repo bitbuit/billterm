@@ -59,6 +59,9 @@ class Sale_ctrl(object):
             return
         print("New sale to " + customer_id + ":")
         id = input("Invoice number: ")
+        if Model.sales.exists(id):
+            print("Invoice already exists!")
+            return
         inv = Sale(id)
         inv.set_customer(Model.customers.get(customer_id))
         inv.date = str(date.today())
