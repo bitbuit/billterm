@@ -10,6 +10,12 @@ class Pdf(object):
         self.filename = filename + '.pdf'
         self.dir = os.path.dirname(os.path.abspath(__file__))
 
+    def _add_util_values(self, values):
+        full_values = values
+        full_values['PDF_FILENAME'] = self.filename
+        full_values['ABS_PATH'] = self.dir + '/../'
+        return full_values
+
     def create(self, values):
         print("Create " + self.dir)
 
@@ -18,6 +24,6 @@ class Pdf(object):
         )
 
         template = env.get_template('invoice.html')
-        rendered = template.render(values)
+        rendered = template.render(self._add_util_values(values))
 
-        pdfkit.from_string(rendered, self.filename)
+        pdfkit.from_string(rendered, 'documents/' + self.filename)
