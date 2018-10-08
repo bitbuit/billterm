@@ -81,7 +81,7 @@ class Sale_ctrl(object):
             print("Sale invoice not exists!")
             return
 
-        desc = input("Descripion: ")
+        desc = input("Description: ")
         price = float(input("Unit price: "))
         qty = float(input("Quantity: "))
         vatsid = input("Vats separated by comma: ")
