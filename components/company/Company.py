@@ -23,8 +23,7 @@ class Company(object):
 class Companies(object):
 
     def __init__(self, db_file):
-        db_path = './db/'
-        self.companies = Json_db(db_path + db_file)
+        self.companies = Json_db(db_file)
 
     def add(self, company):
         self.companies.set(company.id, company.exports())

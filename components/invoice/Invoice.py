@@ -102,8 +102,7 @@ class Invoice(object):
 class Invoices(object):
 
     def __init__(self, db_file):
-        path_db = './db/'
-        self.invoices = Json_db(path_db + db_file)
+        self.invoices = Json_db(db_file)
 
     def add(self, invoice):
         self.invoices.set(invoice.id, invoice.exports())

@@ -11,5 +11,11 @@ class App_tpl(object):
         print("  ~ Write " + Text_style.BOLD + "help" + Text_style.END_STYLE + " if you are lost :$")        
 
     @staticmethod
+    def list_dbs(dbs):
+        print("Existing DBs")
+        for db in dbs:
+            Screen.render_line([ [db, "{:<20}", Text_style.BLUE] ])
+
+    @staticmethod
     def help():
         print('helping people!')

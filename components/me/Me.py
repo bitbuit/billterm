@@ -4,8 +4,7 @@ from libs.Json_db import Json_db
 class Me(object):
 
     def __init__(self, db_file):
-        path_db = './db/'
-        self._me = Json_db(path_db + db_file)
+        self._me = Json_db(db_file)
         self._company = Company('ME')
         self._company.imports(self._me.get('ME'))
 
