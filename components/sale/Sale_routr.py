@@ -8,5 +8,6 @@ class Sale_routr(Routes):
                 [ ['export', 'sale'], Sale_ctrl.pdf ],
                 [ ['view', 'sale'], Sale_ctrl.view ],
                 [ ['new', 'sale'], Sale_ctrl.new ],
-                [ ['add', 'sale', 'item'], Sale_ctrl.add_item ]
+                [ ['add', 'sale', 'item'], Sale_ctrl.add_item ],
+                [ ['paid', 'sale'], Sale_ctrl.paid ]
     ]

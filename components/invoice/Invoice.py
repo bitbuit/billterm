@@ -92,6 +92,9 @@ class Invoice(object):
         d = self.date.split("-")
         return date(int(d[0]),int(d[1]),int(d[2]))
 
+    def set_paid(self, date):
+        self.paid = date
+
     def exports(self):
         return self.__dict__
 
@@ -124,6 +127,9 @@ class Invoices(object):
         inv = Invoice(id)
         inv.imports(self.invoices.get(id))
         return inv
+
+    def update(self, invoice):
+        self.add(invoice)
 
     def exists(self, id):
         return self.invoices.exists(id)

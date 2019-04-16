@@ -47,6 +47,28 @@ class Sale_ctrl(object):
 
         Sale_tpl.view(invoice)
 
+    @staticmethod
+    def paid(params):
+        if len(params) == 0:
+            print("Please especify a sale invoice ID")
+            return
+
+        invoice_id = params[0]
+        if not Model.sales.exists(invoice_id):
+            print("Sale invoice not exists!")
+            return       
+
+        invoice = Model.sales.get(invoice_id)
+
+        if len(params) == 1:
+            invoice.set_paid(str(date.today()))
+        elif len(params) == 3 and params[1] == "on":
+            invoice.set_paid(params[2])
+        else:
+            return
+
+        Model.sales.update(invoice)
+
 
     @staticmethod
     def new(params):
