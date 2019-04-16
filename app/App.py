@@ -6,6 +6,7 @@ from components.customer.Customer_routr import Customer_routr
 from components.supplier.Supplier_routr import Supplier_routr
 from components.me.Me_routr import Me_routr
 from components.sale.Sale_routr import Sale_routr
+from libs.Screen import Screen
 
 class App(object):
 
@@ -17,7 +18,7 @@ class App(object):
     def start():
         Commands.do(["hello!"])
         while True:
-            exp = input(": ")
+            exp = Screen.prompt()
             exp = shlex.split(exp)
             Commands.do(exp)
 #            try:

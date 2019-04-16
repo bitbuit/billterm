@@ -39,6 +39,11 @@ class Screen(object):
             cell = style + cell + Text_style.END_STYLE
         return cell
 
+    @staticmethod
+    def prompt():
+        return input(Text_style.YELLOW + "$" + Text_style.WHITE + ": " + Text_style.END_STYLE)
+        
+
 
 class Table(object):
 
